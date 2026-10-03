@@ -1,5 +1,5 @@
 // Service Worker for AI RoboPet
-const CACHE_NAME = 'ai-robopet-v1';
+const CACHE_NAME = 'ai-robopet-v2-cyber';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',

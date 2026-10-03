@@ -35,7 +35,7 @@ export const NavigationHeader: React.FC<NavigationHeaderProps> = ({
   return (
     <header className="min-h-16 py-2 border-b border-slate-800 bg-slate-900/95 backdrop-blur-md px-3 sm:px-4 md:px-6 sticky top-0 z-50 flex flex-wrap justify-between items-center gap-2 sm:gap-4 shadow-xl max-w-full overflow-hidden">
       <div className="flex items-center gap-2.5 shrink-0">
-        <div className="w-8 h-8 bg-[#1e1b4b] border border-[#a855f7]/40 rounded-lg flex items-center justify-center shrink-0 shadow-md shadow-[#a855f7]/20 overflow-hidden p-0.5">
+        <div className="w-8 h-8 bg-[#0a0612] border border-[#00f0ff]/50 rounded-lg flex items-center justify-center shrink-0 shadow-md shadow-[#00f0ff]/30 overflow-hidden">
           <img src="/icon.svg" alt="AI RoboPet Icon" className="w-full h-full object-contain rounded" />
         </div>
         <h1 className="text-sm sm:text-base md:text-lg font-bold tracking-tight text-white uppercase font-display whitespace-nowrap">

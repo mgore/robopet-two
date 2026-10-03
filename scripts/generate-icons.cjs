@@ -80,8 +80,8 @@ function createNeuralIcon(size) {
 const buffer512 = createNeuralIcon(512);
 const buffer192 = createNeuralIcon(192);
 
-fs.writeFileSync('public/icon-512.png', buffer512);
-fs.writeFileSync('public/icon-192.png', buffer192);
+fs.writeFileSync('public/legacy-icons/icon-512.png', buffer512);
+fs.writeFileSync('public/legacy-icons/icon-192.png', buffer192);
 
 if (fs.existsSync('dist')) {
   fs.writeFileSync('dist/icon-512.png', buffer512);
