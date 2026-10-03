@@ -183,7 +183,7 @@ async function generateContentWithFallback(
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT) || 3000;
 
   // Parse JSON bodies
   app.use(express.json());
