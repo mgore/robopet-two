@@ -1,0 +1,79 @@
+/* Generated from tokens.json. Set data-theme="classic" (default) or "cyberpunk" on <html>. */
+:root, [data-theme="classic"] {
+  --surface-base: #020617;
+  --surface-panel: #0f172a;
+  --surface-raised: #1e293b;
+  --border-default: #1e293b;
+  --border-strong: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-faint: #64748b;
+  --accent: #22d3ee;
+  --accent-solid: #06b6d4;
+  --accent-dim: #083344;
+  --accent-border: #155e75;
+  --secondary: #a78bfa;
+  --secondary-dim: #2e1065;
+  --brand: #a855f7;
+  --brand-deep: #1e1b4b;
+  --success: #34d399;
+  --success-dim: #022c22;
+  --warning: #fbbf24;
+  --warning-dim: #451a03;
+  --danger: #fb7185;
+  --danger-dim: #4c0519;
+  --on-accent: #020617;
+  --shadow-panel: 0 10px 15px rgba(0,0,0,0.3);
+  --shadow-glow: 0 4px 12px rgba(168,85,247,0.2);
+}
+
+[data-theme="cyberpunk"] {
+  --surface-base: #0a0612;
+  --surface-panel: #120a24;
+  --surface-raised: #1c1136;
+  --border-default: #34206a;
+  --border-strong: #5b34a8;
+  --text-primary: #f5eaff;
+  --text-secondary: #d9c7f5;
+  --text-muted: #a596cf;
+  --text-faint: #8f7fc0;
+  --accent: #00f0ff;
+  --accent-solid: #00d5e6;
+  --accent-dim: #062a3a;
+  --accent-border: #0e8a99;
+  --secondary: #ff2bd6;
+  --secondary-dim: #3a0a3a;
+  --brand: #b026ff;
+  --brand-deep: #1a0b3b;
+  --success: #39ff14;
+  --success-dim: #06260f;
+  --warning: #f9f002;
+  --warning-dim: #2b2a02;
+  --danger: #ff3860;
+  --danger-dim: #3d0a17;
+  --on-accent: #0a0612;
+  --shadow-panel: 0 0 0 1px rgba(0,240,255,0.25), 0 0 18px rgba(0,240,255,0.18);
+  --shadow-glow: 0 0 14px rgba(255,43,214,0.6);
+}
+
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+  --radius-cyber: 2px;
+  --font-sans: "Inter", "Roboto", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-cyber-sans: "Chakra Petch", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-cyber-mono: "Share Tech Mono", "JetBrains Mono", ui-monospace, monospace;
+  --font-cyber-display: "Orbitron", "Space Grotesk", sans-serif;
+}

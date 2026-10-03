@@ -1,0 +1,78 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Admins carry the `admin: true` custom claim on their Firebase Auth token.
+    // Grant it with the Admin SDK: admin.auth().setCustomUserClaims(uid, { admin: true })
+    function isAdmin() {
+      return isSignedIn() && request.auth.token.admin == true;
+    }
+
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId);
+      allow update: if isOwner(userId);
+      allow delete: if isOwner(userId);
+    }
+
+    match /communityPosts/{postId} {
+      // Communal space: anyone can read shared photos, designs, and inventory
+      allow read: if true;
+      // Authenticated makers can publish posts with their authorUid
+      allow create: if isSignedIn() && request.resource.data.authorUid == request.auth.uid;
+      // Authors can update or delete their own posts
+      allow update, delete: if isSignedIn() && resource.data.authorUid == request.auth.uid;
+    }
+
+    match /hardwareCatalog/{itemId} {
+      // Hardware catalog is globally readable
+      allow read: if true;
+      // Only admins can create, update or delete catalog items (including the initial seed)
+      allow write: if isAdmin();
+    }
+
+    match /reports/{reportId} {
+      // Anyone can file a report on community content or AI output (Google Play UGC/AI policy).
+      // Reports are reviewed from the Firebase console; clients can never read or change them.
+      allow create: if request.resource.data.keys().hasOnly(
+          ['targetType', 'targetId', 'reason', 'details', 'excerpt', 'reporterUid', 'status', 'createdAt'])
+        && request.resource.data.targetType in ['showcase_project', 'community_post', 'ai_output']
+        && request.resource.data.targetId is string && request.resource.data.targetId.size() <= 200
+        && request.resource.data.reason is string && request.resource.data.reason.size() <= 32
+        && request.resource.data.details is string && request.resource.data.details.size() <= 1000
+        && request.resource.data.excerpt is string && request.resource.data.excerpt.size() <= 2000
+        && request.resource.data.status == 'open'
+        && request.resource.data.createdAt == request.time
+        && (request.resource.data.reporterUid == null
+            || (isSignedIn() && request.resource.data.reporterUid == request.auth.uid));
+    }
+
+    match /showcaseProjects/{projectId} {
+      // Community published projects are globally readable
+      allow read: if true;
+      // Authenticated users can publish with their authorUid
+      allow create: if isSignedIn() && request.resource.data.authorUid == request.auth.uid;
+      // Authors can update everything; authenticated community members can like/comment
+      allow update: if isSignedIn() && (
+        resource.data.authorUid == request.auth.uid ||
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes', 'likedBy', 'comments'])
+      );
+      // Only author can delete their project
+      allow delete: if isSignedIn() && resource.data.authorUid == request.auth.uid;
+    }
+  }
+}
+
