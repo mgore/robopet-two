@@ -1,0 +1,255 @@
+{
+  "color": {
+    "surface-base": {
+      "$type": "color",
+      "$value": "#020617",
+      "$description": "Page background (body, slate-950). Sits behind every panel."
+    },
+    "surface-panel": {
+      "$type": "color",
+      "$value": "#0f172a",
+      "$description": "Header, cards and modals (slate-900)."
+    },
+    "surface-raised": {
+      "$type": "color",
+      "$value": "#1e293b",
+      "$description": "Inputs, hover fills and inset wells inside a panel (slate-800)."
+    },
+    "border-default": {
+      "$type": "color",
+      "$value": "#1e293b",
+      "$description": "1px panel and divider borders (border-slate-800)."
+    },
+    "border-strong": {
+      "$type": "color",
+      "$value": "#334155",
+      "$description": "Input and control outlines (border-slate-700)."
+    },
+    "text-primary": {
+      "$type": "color",
+      "$value": "#f1f5f9",
+      "$description": "Headings and key values. 4.5:1+ on every surface."
+    },
+    "text-secondary": {
+      "$type": "color",
+      "$value": "#cbd5e1",
+      "$description": "Body copy and table cells."
+    },
+    "text-muted": {
+      "$type": "color",
+      "$value": "#94a3b8",
+      "$description": "Captions, labels and helper text."
+    },
+    "text-faint": {
+      "$type": "color",
+      "$value": "#64748b",
+      "$description": "Placeholders and timestamps. Never for required information."
+    },
+    "accent": {
+      "$type": "color",
+      "$value": "#22d3ee",
+      "$description": "Primary interactive colour: links, active tabs, icons, focus (cyan-400). The app's most used hue."
+    },
+    "accent-solid": {
+      "$type": "color",
+      "$value": "#06b6d4",
+      "$description": "Filled primary buttons (cyan-500). Text on it is on-accent."
+    },
+    "accent-dim": {
+      "$type": "color",
+      "$value": "#083344",
+      "$description": "Tinted fill behind accent text (cyan-950)."
+    },
+    "accent-border": {
+      "$type": "color",
+      "$value": "#155e75",
+      "$description": "Border on accent-dim fills (cyan-800)."
+    },
+    "secondary": {
+      "$type": "color",
+      "$value": "#a78bfa",
+      "$description": "Secondary hue for AI, LLM and creative surfaces (violet-400; neon magenta in Cyberpunk)."
+    },
+    "secondary-dim": {
+      "$type": "color",
+      "$value": "#2e1065",
+      "$description": "Tinted fill behind secondary text (violet-950)."
+    },
+    "brand": {
+      "$type": "color",
+      "$value": "#a855f7",
+      "$description": "The ROBOPET wordmark and PWA theme colour."
+    },
+    "brand-deep": {
+      "$type": "color",
+      "$value": "#1e1b4b",
+      "$description": "Icon tile background and PWA splash."
+    },
+    "success": {
+      "$type": "color",
+      "$value": "#34d399",
+      "$description": "Compatible, in-budget, passing (emerald-400)."
+    },
+    "success-dim": {
+      "$type": "color",
+      "$value": "#022c22",
+      "$description": "Fill behind success text."
+    },
+    "warning": {
+      "$type": "color",
+      "$value": "#fbbf24",
+      "$description": "Caution, near-budget, pending (amber-400)."
+    },
+    "warning-dim": {
+      "$type": "color",
+      "$value": "#451a03",
+      "$description": "Fill behind warning text."
+    },
+    "danger": {
+      "$type": "color",
+      "$value": "#fb7185",
+      "$description": "Errors, incompatibility, destructive actions, Support button (rose-400)."
+    },
+    "danger-dim": {
+      "$type": "color",
+      "$value": "#4c0519",
+      "$description": "Fill behind danger text."
+    },
+    "on-accent": {
+      "$type": "color",
+      "$value": "#020617",
+      "$description": "Text on accent-solid and other bright fills."
+    }
+  },
+  "shadow": {
+    "shadow-panel": {
+      "$type": "shadow",
+      "$value": "0 10px 15px rgba(0,0,0,0.3)",
+      "$description": "Header and cards. Cyberpunk swaps depth for neon edge glow."
+    },
+    "shadow-glow": {
+      "$type": "shadow",
+      "$value": "0 4px 12px rgba(168,85,247,0.2)",
+      "$description": "Brand tile and hovered primary controls."
+    }
+  },
+  "spacing": {
+    "space-1": {
+      "$type": "dimension",
+      "$value": "4px",
+      "$description": "Icon-to-label gap."
+    },
+    "space-2": {
+      "$type": "dimension",
+      "$value": "8px",
+      "$description": "Button group gap, chip padding."
+    },
+    "space-3": {
+      "$type": "dimension",
+      "$value": "12px",
+      "$description": "Compact card padding."
+    },
+    "space-4": {
+      "$type": "dimension",
+      "$value": "16px",
+      "$description": "Card padding, page gutter on mobile."
+    },
+    "space-6": {
+      "$type": "dimension",
+      "$value": "24px",
+      "$description": "Section spacing, page gutter on desktop."
+    },
+    "space-8": {
+      "$type": "dimension",
+      "$value": "32px",
+      "$description": "Between major sections."
+    }
+  },
+  "radius": {
+    "radius-md": {
+      "$type": "dimension",
+      "$value": "6px",
+      "$description": "Classic: small chips (rounded-md)."
+    },
+    "radius-lg": {
+      "$type": "dimension",
+      "$value": "8px",
+      "$description": "Classic: buttons and inputs (rounded-lg). Most used."
+    },
+    "radius-xl": {
+      "$type": "dimension",
+      "$value": "12px",
+      "$description": "Classic: cards (rounded-xl)."
+    },
+    "radius-2xl": {
+      "$type": "dimension",
+      "$value": "16px",
+      "$description": "Classic: modals (rounded-2xl)."
+    },
+    "radius-full": {
+      "$type": "dimension",
+      "$value": "9999px",
+      "$description": "Classic: badges and avatars."
+    },
+    "radius-cyber": {
+      "$type": "dimension",
+      "$value": "2px",
+      "$description": "Cyberpunk: every control and card. Corners are nearly square; use a clipped corner for emphasis."
+    }
+  },
+  "font": {
+    "sans": {
+      "$type": "fontFamily",
+      "$value": [
+        "Inter",
+        "Roboto",
+        "ui-sans-serif",
+        "system-ui",
+        "sans-serif"
+      ]
+    },
+    "mono": {
+      "$type": "fontFamily",
+      "$value": [
+        "JetBrains Mono",
+        "ui-monospace",
+        "SFMono-Regular",
+        "monospace"
+      ]
+    },
+    "display": {
+      "$type": "fontFamily",
+      "$value": [
+        "Space Grotesk",
+        "sans-serif"
+      ]
+    },
+    "cyber-sans": {
+      "$type": "fontFamily",
+      "$value": [
+        "Chakra Petch",
+        "Inter",
+        "ui-sans-serif",
+        "system-ui",
+        "sans-serif"
+      ]
+    },
+    "cyber-mono": {
+      "$type": "fontFamily",
+      "$value": [
+        "Share Tech Mono",
+        "JetBrains Mono",
+        "ui-monospace",
+        "monospace"
+      ]
+    },
+    "cyber-display": {
+      "$type": "fontFamily",
+      "$value": [
+        "Orbitron",
+        "Space Grotesk",
+        "sans-serif"
+      ]
+    }
+  }
+}

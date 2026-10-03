@@ -1,0 +1,13 @@
+services:
+  robopet-two:
+    build:
+      context: .
+      args:
+        VITE_FIREBASE_API_KEY: ${VITE_FIREBASE_API_KEY:-}
+    image: robopet-two:latest
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      APP_URL: ${APP_URL:-http://localhost:3000}
+    restart: unless-stopped

@@ -1,0 +1,142 @@
+/*
+ * RoboPet, Cyberpunk Retro theme (Tailwind v4).
+ * Re-maps the palette and radii the app already uses, so no component changes are needed.
+ * Import after `@import "tailwindcss";`. Values mirror tokens.json (theme "cyberpunk").
+ * Fonts needed: Orbitron, Chakra Petch, Share Tech Mono (Google Fonts).
+ */
+@theme {
+  --font-sans: "Chakra Petch", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Share Tech Mono", "JetBrains Mono", ui-monospace, monospace;
+  --font-display: "Orbitron", "Space Grotesk", sans-serif;
+
+  /* Corners: near-square */
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-xl: 3px;
+  --radius-2xl: 4px;
+
+  /* slate -> violet-black void */
+  --color-slate-50: #faf5ff;
+  --color-slate-100: #f5eaff;
+  --color-slate-200: #e9d9ff;
+  --color-slate-300: #d9c7f5;
+  --color-slate-400: #a596cf;
+  --color-slate-500: #8f7fc0;
+  --color-slate-600: #6b5a9e;
+  --color-slate-700: #4a2b8a;
+  --color-slate-750: #3b2270;
+  --color-slate-800: #2a1a55;
+  --color-slate-850: #221347;
+  --color-slate-900: #140b28;
+  --color-slate-950: #0a0612;
+
+  /* cyan -> neon cyan */
+  --color-cyan-300: #7ffaff;
+  --color-cyan-400: #00f0ff;
+  --color-cyan-500: #00d5e6;
+  --color-cyan-600: #00b8c9;
+  --color-cyan-700: #0a8fa0;
+  --color-cyan-800: #0e6b7a;
+  --color-cyan-900: #0a4654;
+  --color-cyan-950: #062a3a;
+
+  /* emerald -> toxic green */
+  --color-emerald-300: #a6ff8f;
+  --color-emerald-400: #39ff14;
+  --color-emerald-500: #2fd611;
+  --color-emerald-600: #25a80d;
+  --color-emerald-700: #1c7e0a;
+  --color-emerald-800: #155f08;
+  --color-emerald-900: #0e4206;
+  --color-emerald-950: #06260f;
+
+  /* violet -> hot magenta */
+  --color-violet-300: #ff9cec;
+  --color-violet-400: #ff2bd6;
+  --color-violet-500: #e01fbd;
+  --color-violet-600: #b81a99;
+  --color-violet-700: #8f1577;
+  --color-violet-800: #6b1058;
+  --color-violet-900: #4a0b3e;
+  --color-violet-950: #3a0a3a;
+
+  /* indigo -> ultraviolet */
+  --color-indigo-200: #e0c8ff;
+  --color-indigo-300: #c9a3ff;
+  --color-indigo-400: #b026ff;
+  --color-indigo-500: #9a1fe0;
+  --color-indigo-700: #6a17a3;
+  --color-indigo-800: #4c1180;
+  --color-indigo-900: #34105a;
+  --color-indigo-950: #1a0b3b;
+
+  /* amber -> acid yellow */
+  --color-amber-300: #fff86b;
+  --color-amber-400: #f9f002;
+  --color-amber-500: #d6cf00;
+  --color-amber-800: #7a7400;
+  --color-amber-900: #4d4900;
+  --color-amber-950: #2b2a02;
+
+  /* rose / red -> hot red */
+  --color-rose-300: #ff9db0;
+  --color-rose-400: #ff3860;
+  --color-rose-500: #e0224a;
+  --color-rose-700: #8f1430;
+  --color-rose-900: #4d0a19;
+  --color-rose-950: #3d0a17;
+  --color-red-300: #ff9db0;
+  --color-red-400: #ff3860;
+  --color-red-500: #e0224a;
+  --color-red-950: #3d0a17;
+}
+
+/* Retro grid + scanlines over the void */
+body {
+  background-image:
+    linear-gradient(rgba(0, 240, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.045) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-attachment: fixed;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.22) 3px
+  );
+  mix-blend-mode: multiply;
+}
+
+/* Neon glow: headings, cyan text, panel edges */
+.font-display {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 10px rgba(255, 43, 214, 0.55);
+}
+.text-cyan-400,
+.text-cyan-300 { text-shadow: 0 0 8px rgba(0, 240, 255, 0.45); }
+.text-emerald-400 { text-shadow: 0 0 8px rgba(57, 255, 20, 0.4); }
+.text-violet-400 { text-shadow: 0 0 8px rgba(255, 43, 214, 0.45); }
+
+header.sticky { box-shadow: 0 1px 0 0 #00f0ff, 0 4px 24px rgba(0, 240, 255, 0.22); }
+.border-cyan-500 { box-shadow: 0 0 10px rgba(0, 240, 255, 0.35); }
+
+/* Retro terminal labels */
+button, a[class*="font-mono"] { text-transform: uppercase; letter-spacing: 0.06em; }
+button:hover:not(:disabled) { filter: brightness(1.15); }
+:focus-visible { outline: 2px solid #f9f002; outline-offset: 2px; }
+
+::selection { background: #ff2bd6; color: #0a0612; }
+* { scrollbar-color: #4a2b8a #0a0612; }
+
+@media (prefers-reduced-motion: reduce) {
+  body::after { display: none; }
+}
