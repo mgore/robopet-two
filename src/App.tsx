@@ -1371,7 +1371,7 @@ export default function App() {
             exit={{ opacity: 0, y: 50 }}
             className="fixed bottom-6 right-6 z-50 bg-slate-950 border border-cyan-500/40 text-white font-mono text-xs font-semibold px-4 py-3 rounded shadow-[0_4px_25px_rgba(6,182,212,0.3)] flex items-center gap-2"
           >
-            <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
+            <Sparkles className="w-4 h-4 text-violet-400 animate-pulse" />
             <span>{notification}</span>
           </motion.div>
         )}

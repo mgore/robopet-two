@@ -585,7 +585,7 @@ Custom Directives: ${customPrompt || "Precision robotic assembly with functional
             <button
               onClick={() => generateCategoryConcept(activeCategoryId)}
               disabled={isGenerating || batchGenerating}
-              className="w-full h-11 bg-cyan-600 hover:bg-cyan-500 disabled:bg-slate-800 disabled:text-slate-600 text-white font-mono font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-lg transition uppercase tracking-wider cursor-pointer"
+              className="w-full h-11 bg-violet-600 hover:bg-violet-500 disabled:bg-slate-800 disabled:text-slate-600 text-white font-mono font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-lg transition uppercase tracking-wider cursor-pointer"
             >
               {isGenerating ? (
                 <>
@@ -653,7 +653,7 @@ Custom Directives: ${customPrompt || "Precision robotic assembly with functional
               <div className="flex flex-col items-center gap-3 text-center p-6">
                 <div className="relative">
                   <div className="w-14 h-14 rounded-full border-2 border-cyan-500/20 border-t-cyan-400 animate-spin" />
-                  <Sparkles className="w-6 h-6 text-cyan-400 absolute inset-0 m-auto animate-pulse" />
+                  <Sparkles className="w-6 h-6 text-violet-400 absolute inset-0 m-auto animate-pulse" />
                 </div>
                 <div className="font-mono text-sm text-slate-200 font-bold">
                   Synthesizing {currentCategory.label}
@@ -720,7 +720,7 @@ Custom Directives: ${customPrompt || "Precision robotic assembly with functional
                 </p>
                 <button
                   onClick={() => generateCategoryConcept(activeCategoryId)}
-                  className="mt-2 px-3 py-1.5 bg-cyan-600/90 hover:bg-cyan-500 text-white rounded-lg font-mono text-[11px] flex items-center gap-1.5 cursor-pointer"
+                  className="mt-2 px-3 py-1.5 bg-violet-600/90 hover:bg-violet-500 text-white rounded-lg font-mono text-[11px] flex items-center gap-1.5 cursor-pointer"
                 >
                   <Camera className="w-3.5 h-3.5" />
                   <span>Synthesize Render Now</span>
@@ -733,7 +733,7 @@ Custom Directives: ${customPrompt || "Precision robotic assembly with functional
           <div className="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800 flex flex-col gap-2.5">
             <div className="flex items-center justify-between">
               <span className="text-xs font-mono font-bold text-slate-300 flex items-center gap-1.5">
-                <Wand2 className="w-3.5 h-3.5 text-cyan-400" />
+                <Wand2 className="w-3.5 h-3.5 text-violet-400" />
                 <span>AI Prompt Image Editor (gemini-3.1-flash-image-preview)</span>
               </span>
               {editSuccessMsg && (
@@ -780,7 +780,7 @@ Custom Directives: ${customPrompt || "Precision robotic assembly with functional
               <button
                 onClick={() => generateCategoryConcept(activeCategoryId, editPrompt.trim())}
                 disabled={isEditing || !editPrompt.trim() || !activeImage}
-                className="px-3.5 py-2 bg-cyan-600 hover:bg-cyan-500 disabled:bg-slate-800 disabled:text-slate-600 text-white font-mono font-bold text-xs rounded-lg flex items-center gap-1.5 transition cursor-pointer shrink-0"
+                className="px-3.5 py-2 bg-violet-600 hover:bg-violet-500 disabled:bg-slate-800 disabled:text-slate-600 text-white font-mono font-bold text-xs rounded-lg flex items-center gap-1.5 transition cursor-pointer shrink-0"
               >
                 {isEditing ? (
                   <>
