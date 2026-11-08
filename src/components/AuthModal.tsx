@@ -364,7 +364,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               disabled={loading}
               className="w-full py-3 bg-cyan-950 hover:bg-cyan-900 border border-cyan-700/80 text-cyan-100 font-mono text-xs font-bold rounded-xl transition flex items-center justify-center gap-2 cursor-pointer shadow-lg hover:shadow-cyan-500/10 disabled:opacity-50 mt-4"
             >
-              <Sparkles className="w-4 h-4 text-cyan-400" />
+              <Sparkles className="w-4 h-4 text-violet-400" />
               {loading 
                 ? "Authenticating..." 
                 : mode === "signin" 

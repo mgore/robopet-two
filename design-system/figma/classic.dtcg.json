@@ -68,7 +68,7 @@
     "secondary": {
       "$type": "color",
       "$value": "#a78bfa",
-      "$description": "Secondary hue for AI, LLM and creative surfaces (violet-400; neon magenta in Cyberpunk)."
+      "$description": "Secondary hue for AI, LLM and creative surfaces (violet-400; fuchsia in Cyberpunk)."
     },
     "secondary-dim": {
       "$type": "color",

@@ -161,7 +161,7 @@
       "secondary": {
         "value": "#a78bfa",
         "type": "color",
-        "description": "Secondary hue for AI, LLM and creative surfaces (violet-400; neon magenta in Cyberpunk)."
+        "description": "Secondary hue for AI, LLM and creative surfaces (violet-400; fuchsia in Cyberpunk)."
       },
       "secondary-dim": {
         "value": "#2e1065",
@@ -230,87 +230,87 @@
   "cyberpunk": {
     "color": {
       "surface-base": {
-        "value": "#0a0612",
+        "value": "#050008",
         "type": "color",
         "description": "Page background (body, slate-950). Sits behind every panel."
       },
       "surface-panel": {
-        "value": "#120a24",
+        "value": "#0e0619",
         "type": "color",
         "description": "Header, cards and modals (slate-900)."
       },
       "surface-raised": {
-        "value": "#1c1136",
+        "value": "#26124a",
         "type": "color",
         "description": "Inputs, hover fills and inset wells inside a panel (slate-800)."
       },
       "border-default": {
-        "value": "#34206a",
+        "value": "#26124a",
         "type": "color",
         "description": "1px panel and divider borders (border-slate-800)."
       },
       "border-strong": {
-        "value": "#5b34a8",
+        "value": "#3d1f73",
         "type": "color",
         "description": "Input and control outlines (border-slate-700)."
       },
       "text-primary": {
-        "value": "#f5eaff",
+        "value": "#f4ecff",
         "type": "color",
         "description": "Headings and key values. 4.5:1+ on every surface."
       },
       "text-secondary": {
-        "value": "#d9c7f5",
+        "value": "#d6c6f2",
         "type": "color",
         "description": "Body copy and table cells."
       },
       "text-muted": {
-        "value": "#a596cf",
+        "value": "#a99ccc",
         "type": "color",
         "description": "Captions, labels and helper text."
       },
       "text-faint": {
-        "value": "#8f7fc0",
+        "value": "#8a7db3",
         "type": "color",
         "description": "Placeholders and timestamps. Never for required information."
       },
       "accent": {
-        "value": "#00f0ff",
+        "value": "#00ffff",
         "type": "color",
         "description": "Primary interactive colour: links, active tabs, icons, focus (cyan-400). The app's most used hue."
       },
       "accent-solid": {
-        "value": "#00d5e6",
+        "value": "#01e0e1",
         "type": "color",
         "description": "Filled primary buttons (cyan-500). Text on it is on-accent."
       },
       "accent-dim": {
-        "value": "#062a3a",
+        "value": "#04242b",
         "type": "color",
         "description": "Tinted fill behind accent text (cyan-950)."
       },
       "accent-border": {
-        "value": "#0e8a99",
+        "value": "#028c90",
         "type": "color",
         "description": "Border on accent-dim fills (cyan-800)."
       },
       "secondary": {
-        "value": "#ff2bd6",
+        "value": "#ff00e5",
         "type": "color",
-        "description": "Secondary hue for AI, LLM and creative surfaces (violet-400; neon magenta in Cyberpunk)."
+        "description": "Secondary hue for AI, LLM and creative surfaces (violet-400; fuchsia in Cyberpunk)."
       },
       "secondary-dim": {
-        "value": "#3a0a3a",
+        "value": "#280027",
         "type": "color",
         "description": "Tinted fill behind secondary text (violet-950)."
       },
       "brand": {
-        "value": "#b026ff",
+        "value": "#a43dff",
         "type": "color",
         "description": "The ROBOPET wordmark and PWA theme colour."
       },
       "brand-deep": {
-        "value": "#1a0b3b",
+        "value": "#1b092b",
         "type": "color",
         "description": "Icon tile background and PWA splash."
       },
@@ -320,44 +320,44 @@
         "description": "Compatible, in-budget, passing (emerald-400)."
       },
       "success-dim": {
-        "value": "#06260f",
+        "value": "#0c240a",
         "type": "color",
         "description": "Fill behind success text."
       },
       "warning": {
-        "value": "#f9f002",
+        "value": "#ffff00",
         "type": "color",
         "description": "Caution, near-budget, pending (amber-400)."
       },
       "warning-dim": {
-        "value": "#2b2a02",
+        "value": "#282407",
         "type": "color",
         "description": "Fill behind warning text."
       },
       "danger": {
-        "value": "#ff3860",
+        "value": "#ff3b30",
         "type": "color",
         "description": "Errors, incompatibility, destructive actions, Support button (rose-400)."
       },
       "danger-dim": {
-        "value": "#3d0a17",
+        "value": "#28080e",
         "type": "color",
         "description": "Fill behind danger text."
       },
       "on-accent": {
-        "value": "#0a0612",
+        "value": "#050008",
         "type": "color",
         "description": "Text on accent-solid and other bright fills."
       }
     },
     "shadow": {
       "shadow-panel": {
-        "value": "0 0 0 1px rgba(0,240,255,0.25), 0 0 18px rgba(0,240,255,0.18)",
+        "value": "0 0 0 1px rgba(164,61,255,0.3), 0 0 18px rgba(255,0,229,0.16)",
         "type": "boxShadow",
         "description": "Header and cards. Cyberpunk swaps depth for neon edge glow."
       },
       "shadow-glow": {
-        "value": "0 0 14px rgba(255,43,214,0.6)",
+        "value": "0 0 14px rgba(255,0,229,0.65)",
         "type": "boxShadow",
         "description": "Brand tile and hovered primary controls."
       }

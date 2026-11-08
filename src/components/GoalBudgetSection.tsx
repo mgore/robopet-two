@@ -247,7 +247,7 @@ export const GoalBudgetSection: React.FC<GoalBudgetSectionProps> = ({
         <button
           onClick={runAISourcing}
           disabled={sourcingLoading}
-          className="w-full h-12 px-4 bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl text-xs font-bold font-mono tracking-wider hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all uppercase disabled:bg-slate-800 disabled:text-slate-500 disabled:border-slate-800 border-0 flex items-center justify-center gap-2 cursor-pointer mt-1"
+          className="w-full h-12 px-4 bg-violet-600 hover:bg-violet-500 text-white rounded-xl text-xs font-bold font-mono tracking-wider hover:shadow-[0_0_20px_rgba(255,0,229,0.35)] transition-all uppercase disabled:bg-slate-800 disabled:text-slate-500 disabled:border-slate-800 border-0 flex items-center justify-center gap-2 cursor-pointer mt-1"
         >
           {sourcingLoading ? (
             <>
@@ -274,7 +274,7 @@ export const GoalBudgetSection: React.FC<GoalBudgetSectionProps> = ({
           >
             <div className="bg-cyan-950/40 px-4 py-3 border-b border-cyan-800/30 flex justify-between items-center">
               <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
+                <Sparkles className="w-4 h-4 text-violet-400 animate-pulse" />
                 <span className="text-[11px] font-bold text-cyan-300 font-mono tracking-widest uppercase">
                   AI Architecture Recommendation
                 </span>
@@ -337,7 +337,7 @@ export const GoalBudgetSection: React.FC<GoalBudgetSectionProps> = ({
 
               <button
                 onClick={importAIBOM}
-                className="w-full h-10 bg-cyan-600 text-white hover:bg-cyan-500 rounded-lg font-mono text-xs font-bold hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all uppercase flex items-center justify-center gap-1.5 cursor-pointer"
+                className="w-full h-10 bg-violet-600 text-white hover:bg-violet-500 rounded-lg font-mono text-xs font-bold hover:shadow-[0_0_15px_rgba(255,0,229,0.35)] transition-all uppercase flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <Plus className="w-4 h-4" />
                 Load AI Parts into BOM Drawer

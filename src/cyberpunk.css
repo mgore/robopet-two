@@ -1,8 +1,15 @@
 /*
- * RoboPet, Cyberpunk Retro theme (Tailwind v4).
+ * RoboPet, Cyberpunk Retro theme: "Stark Neon" pass (Tailwind v4).
  * Re-maps the palette and radii the app already uses, so no component changes are needed.
  * Import after `@import "tailwindcss";`. Values mirror tokens.json (theme "cyberpunk").
  * Fonts needed: Orbitron, Chakra Petch, Share Tech Mono (Google Fonts).
+ *
+ * Palette: eight fully saturated neons on a near-black ultraviolet void.
+ *   cyan #00ffff (act) · fuchsia #ff00e5 (AI / creative) · ultraviolet #a43dff (brand)
+ *   hot pink #ff3cac · electric blue #4d6bff · acid green #39ff14 (success)
+ *   yellow #ffff00 (warning) · signal red #ff3b30 (danger)
+ * Shades are generated: 50-300 mix toward white, 500-950 mix toward the void (#050008).
+ * Chrome glows rotate through cyan, fuchsia and ultraviolet so no one hue dominates.
  */
 @theme {
   --font-sans: "Chakra Petch", "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -15,88 +22,192 @@
   --radius-xl: 3px;
   --radius-2xl: 4px;
 
-  /* slate -> violet-black void */
-  --color-slate-50: #faf5ff;
-  --color-slate-100: #f5eaff;
-  --color-slate-200: #e9d9ff;
-  --color-slate-300: #d9c7f5;
-  --color-slate-400: #a596cf;
-  --color-slate-500: #8f7fc0;
-  --color-slate-600: #6b5a9e;
-  --color-slate-700: #4a2b8a;
-  --color-slate-750: #3b2270;
-  --color-slate-800: #2a1a55;
-  --color-slate-850: #221347;
-  --color-slate-900: #140b28;
-  --color-slate-950: #0a0612;
+  /* slate -> near-black ultraviolet void */
+  --color-slate-50: #fbf7ff;
+  --color-slate-100: #f4ecff;
+  --color-slate-200: #e8dcff;
+  --color-slate-300: #d6c6f2;
+  --color-slate-400: #a99ccc;
+  --color-slate-500: #8a7db3;
+  --color-slate-600: #5f4f8f;
+  --color-slate-700: #3d1f73;
+  --color-slate-750: #321a5e;
+  --color-slate-800: #26124a;
+  --color-slate-850: #1c0d38;
+  --color-slate-900: #0e0619;
+  --color-slate-950: #050008;
 
-  /* cyan -> neon cyan */
-  --color-cyan-300: #7ffaff;
-  --color-cyan-400: #00f0ff;
-  --color-cyan-500: #00d5e6;
-  --color-cyan-600: #00b8c9;
-  --color-cyan-700: #0a8fa0;
-  --color-cyan-800: #0e6b7a;
-  --color-cyan-900: #0a4654;
-  --color-cyan-950: #062a3a;
+  /* cyan -> pure neon cyan (act) */
+  --color-cyan-50: #edffff;
+  --color-cyan-100: #d9ffff;
+  --color-cyan-200: #b8ffff;
+  --color-cyan-300: #80ffff;
+  --color-cyan-400: #00ffff;
+  --color-cyan-500: #01e0e1;
+  --color-cyan-550: #01ccce;
+  --color-cyan-600: #01b8ba;
+  --color-cyan-700: #028c90;
+  --color-cyan-800: #036166;
+  --color-cyan-900: #043d43;
+  --color-cyan-950: #04242b;
+  --color-teal-50: #edffff;
+  --color-teal-100: #d9ffff;
+  --color-teal-200: #b8ffff;
+  --color-teal-300: #80ffff;
+  --color-teal-400: #00ffff;
+  --color-teal-500: #01e0e1;
+  --color-teal-550: #01ccce;
+  --color-teal-600: #01b8ba;
+  --color-teal-700: #028c90;
+  --color-teal-800: #036166;
+  --color-teal-900: #043d43;
+  --color-teal-950: #04242b;
 
-  /* emerald -> toxic green */
-  --color-emerald-300: #a6ff8f;
+  /* violet -> fuchsia (AI / creative) */
+  --color-violet-50: #ffedfd;
+  --color-violet-100: #ffd9fb;
+  --color-violet-200: #ffb8f8;
+  --color-violet-300: #ff80f2;
+  --color-violet-400: #ff00e5;
+  --color-violet-500: #e100ca;
+  --color-violet-550: #cd00b9;
+  --color-violet-600: #b900a7;
+  --color-violet-700: #8e0082;
+  --color-violet-800: #64005c;
+  --color-violet-900: #41003d;
+  --color-violet-950: #280027;
+
+  /* indigo / purple -> ultraviolet (brand) */
+  --color-indigo-50: #f9f1ff;
+  --color-indigo-100: #f1e2ff;
+  --color-indigo-200: #e6c9ff;
+  --color-indigo-300: #d29eff;
+  --color-indigo-400: #a43dff;
+  --color-indigo-500: #9136e1;
+  --color-indigo-550: #8431ce;
+  --color-indigo-600: #772cba;
+  --color-indigo-700: #5c2290;
+  --color-indigo-800: #411766;
+  --color-indigo-900: #2b0f43;
+  --color-indigo-950: #1b092b;
+  --color-purple-50: #f9f1ff;
+  --color-purple-100: #f1e2ff;
+  --color-purple-200: #e6c9ff;
+  --color-purple-300: #d29eff;
+  --color-purple-400: #a43dff;
+  --color-purple-500: #9136e1;
+  --color-purple-550: #8431ce;
+  --color-purple-600: #772cba;
+  --color-purple-700: #5c2290;
+  --color-purple-800: #411766;
+  --color-purple-900: #2b0f43;
+  --color-purple-950: #1b092b;
+
+  /* pink -> hot pink */
+  --color-pink-50: #fff1f9;
+  --color-pink-100: #ffe2f3;
+  --color-pink-200: #ffc8e8;
+  --color-pink-300: #ff9ed6;
+  --color-pink-400: #ff3cac;
+  --color-pink-500: #e13598;
+  --color-pink-550: #cd308b;
+  --color-pink-600: #b92b7e;
+  --color-pink-700: #8e2162;
+  --color-pink-800: #641746;
+  --color-pink-900: #410e2f;
+  --color-pink-950: #28081f;
+
+  /* sky / blue -> electric blue */
+  --color-sky-50: #f3f5ff;
+  --color-sky-100: #e4e9ff;
+  --color-sky-200: #cdd6ff;
+  --color-sky-300: #a6b5ff;
+  --color-sky-400: #4d6bff;
+  --color-sky-500: #445ee1;
+  --color-sky-550: #3f56ce;
+  --color-sky-600: #394dba;
+  --color-sky-700: #2d3b90;
+  --color-sky-800: #202966;
+  --color-sky-900: #161a43;
+  --color-sky-950: #0f0f2b;
+  --color-blue-50: #f3f5ff;
+  --color-blue-100: #e4e9ff;
+  --color-blue-200: #cdd6ff;
+  --color-blue-300: #a6b5ff;
+  --color-blue-400: #4d6bff;
+  --color-blue-500: #445ee1;
+  --color-blue-550: #3f56ce;
+  --color-blue-600: #394dba;
+  --color-blue-700: #2d3b90;
+  --color-blue-800: #202966;
+  --color-blue-900: #161a43;
+  --color-blue-950: #0f0f2b;
+
+  /* emerald -> acid green (success) */
+  --color-emerald-50: #f1ffef;
+  --color-emerald-100: #e1ffdc;
+  --color-emerald-200: #c8ffbd;
+  --color-emerald-300: #9cff8a;
   --color-emerald-400: #39ff14;
-  --color-emerald-500: #2fd611;
-  --color-emerald-600: #25a80d;
-  --color-emerald-700: #1c7e0a;
-  --color-emerald-800: #155f08;
-  --color-emerald-900: #0e4206;
-  --color-emerald-950: #06260f;
+  --color-emerald-500: #33e013;
+  --color-emerald-550: #2fcc12;
+  --color-emerald-600: #2ab811;
+  --color-emerald-700: #228c0f;
+  --color-emerald-800: #19610d;
+  --color-emerald-900: #113d0b;
+  --color-emerald-950: #0c240a;
 
-  /* violet -> hot magenta */
-  --color-violet-300: #ff9cec;
-  --color-violet-400: #ff2bd6;
-  --color-violet-500: #e01fbd;
-  --color-violet-600: #b81a99;
-  --color-violet-700: #8f1577;
-  --color-violet-800: #6b1058;
-  --color-violet-900: #4a0b3e;
-  --color-violet-950: #3a0a3a;
+  /* amber -> pure yellow (warning) */
+  --color-amber-50: #ffffed;
+  --color-amber-100: #ffffd9;
+  --color-amber-200: #ffffb8;
+  --color-amber-300: #ffff80;
+  --color-amber-400: #ffff00;
+  --color-amber-500: #e1e001;
+  --color-amber-550: #cdcc02;
+  --color-amber-600: #b9b802;
+  --color-amber-700: #8e8c04;
+  --color-amber-800: #646105;
+  --color-amber-900: #413d06;
+  --color-amber-950: #282407;
 
-  /* indigo -> ultraviolet */
-  --color-indigo-200: #e0c8ff;
-  --color-indigo-300: #c9a3ff;
-  --color-indigo-400: #b026ff;
-  --color-indigo-500: #9a1fe0;
-  --color-indigo-700: #6a17a3;
-  --color-indigo-800: #4c1180;
-  --color-indigo-900: #34105a;
-  --color-indigo-950: #1a0b3b;
+  /* rose / red -> signal red (danger) */
+  --color-rose-50: #fff1f1;
+  --color-rose-100: #ffe2e0;
+  --color-rose-200: #ffc8c5;
+  --color-rose-300: #ff9d98;
+  --color-rose-400: #ff3b30;
+  --color-rose-500: #e1342b;
+  --color-rose-550: #cd2f28;
+  --color-rose-600: #b92a25;
+  --color-rose-700: #8e201e;
+  --color-rose-800: #641617;
+  --color-rose-900: #410e12;
+  --color-rose-950: #28080e;
+  --color-red-50: #fff1f1;
+  --color-red-100: #ffe2e0;
+  --color-red-200: #ffc8c5;
+  --color-red-300: #ff9d98;
+  --color-red-400: #ff3b30;
+  --color-red-500: #e1342b;
+  --color-red-550: #cd2f28;
+  --color-red-600: #b92a25;
+  --color-red-700: #8e201e;
+  --color-red-800: #641617;
+  --color-red-900: #410e12;
+  --color-red-950: #28080e;
 
-  /* amber -> acid yellow */
-  --color-amber-300: #fff86b;
-  --color-amber-400: #f9f002;
-  --color-amber-500: #d6cf00;
-  --color-amber-800: #7a7400;
-  --color-amber-900: #4d4900;
-  --color-amber-950: #2b2a02;
-
-  /* rose / red -> hot red */
-  --color-rose-300: #ff9db0;
-  --color-rose-400: #ff3860;
-  --color-rose-500: #e0224a;
-  --color-rose-700: #8f1430;
-  --color-rose-900: #4d0a19;
-  --color-rose-950: #3d0a17;
-  --color-red-300: #ff9db0;
-  --color-red-400: #ff3860;
-  --color-red-500: #e0224a;
-  --color-red-950: #3d0a17;
 }
 
-/* Retro grid + scanlines over the void */
+/* The void: a faint ultraviolet bloom above, a fuchsia ember below, and a grid that alternates hues */
 body {
+  background-color: #050008;
   background-image:
-    linear-gradient(rgba(0, 240, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 240, 255, 0.045) 1px, transparent 1px);
-  background-size: 32px 32px;
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(164, 61, 255, 0.16), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% 110%, rgba(255, 0, 229, 0.08), transparent 70%),
+    linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 229, 0.05) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
   background-attachment: fixed;
 }
 
@@ -110,32 +221,54 @@ body::after {
     to bottom,
     rgba(0, 0, 0, 0) 0,
     rgba(0, 0, 0, 0) 2px,
-    rgba(0, 0, 0, 0.22) 3px
+    rgba(0, 0, 0, 0.24) 3px
   );
   mix-blend-mode: multiply;
 }
 
-/* Neon glow: headings, cyan text, panel edges */
+/* Neon glow: one glow per hue family, same strength for each */
 .font-display {
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  text-shadow: 0 0 10px rgba(255, 43, 214, 0.55);
+  text-shadow: 0 0 10px rgba(255, 0, 229, 0.6);
 }
-.text-cyan-400,
-.text-cyan-300 { text-shadow: 0 0 8px rgba(0, 240, 255, 0.45); }
-.text-emerald-400 { text-shadow: 0 0 8px rgba(57, 255, 20, 0.4); }
-.text-violet-400 { text-shadow: 0 0 8px rgba(255, 43, 214, 0.45); }
+.text-cyan-400, .text-cyan-300, .text-teal-300 { text-shadow: 0 0 8px rgba(0, 255, 255, 0.5); }
+.text-violet-400, .text-violet-300 { text-shadow: 0 0 8px rgba(255, 0, 229, 0.5); }
+.text-indigo-400, .text-indigo-300, .text-purple-400, .text-purple-300 { text-shadow: 0 0 8px rgba(164, 61, 255, 0.55); }
+.text-pink-400, .text-pink-300 { text-shadow: 0 0 8px rgba(255, 60, 172, 0.5); }
+.text-sky-400, .text-blue-300 { text-shadow: 0 0 8px rgba(77, 107, 255, 0.55); }
+.text-emerald-400, .text-emerald-300 { text-shadow: 0 0 8px rgba(57, 255, 20, 0.45); }
+.text-amber-400, .text-amber-300 { text-shadow: 0 0 8px rgba(255, 255, 0, 0.4); }
+.text-rose-400, .text-red-400 { text-shadow: 0 0 8px rgba(255, 59, 48, 0.5); }
 
-header.sticky { box-shadow: 0 1px 0 0 #00f0ff, 0 4px 24px rgba(0, 240, 255, 0.22); }
-.border-cyan-500 { box-shadow: 0 0 10px rgba(0, 240, 255, 0.35); }
+/* Header: a tri-colour rule (cyan -> fuchsia -> ultraviolet) instead of a cyan-only line */
+header.sticky {
+  border-image: linear-gradient(90deg, #00ffff, #ff00e5 50%, #a43dff) 1;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  box-shadow: 0 6px 28px rgba(255, 0, 229, 0.14), 0 2px 12px rgba(0, 255, 255, 0.12);
+}
+
+/* Bordered elements glow in their own hue */
+.border-cyan-500, .border-cyan-400 { box-shadow: 0 0 12px rgba(0, 255, 255, 0.4); }
+.border-violet-500, .border-violet-400 { box-shadow: 0 0 12px rgba(255, 0, 229, 0.4); }
+.border-indigo-500, .border-purple-600 { box-shadow: 0 0 12px rgba(164, 61, 255, 0.45); }
+.border-pink-500 { box-shadow: 0 0 12px rgba(255, 60, 172, 0.4); }
+.border-emerald-500 { box-shadow: 0 0 12px rgba(57, 255, 20, 0.35); }
+
+/* Solid neon buttons radiate their colour */
+.bg-cyan-500, .bg-cyan-600 { box-shadow: 0 0 18px rgba(0, 255, 255, 0.35); }
+.bg-violet-500, .bg-violet-600 { box-shadow: 0 0 18px rgba(255, 0, 229, 0.4); }
+.bg-indigo-500, .bg-purple-600 { box-shadow: 0 0 18px rgba(164, 61, 255, 0.45); }
+.bg-emerald-500, .bg-emerald-600 { box-shadow: 0 0 18px rgba(57, 255, 20, 0.3); }
 
 /* Retro terminal labels */
 button, a[class*="font-mono"] { text-transform: uppercase; letter-spacing: 0.06em; }
-button:hover:not(:disabled) { filter: brightness(1.15); }
-:focus-visible { outline: 2px solid #f9f002; outline-offset: 2px; }
+button:hover:not(:disabled) { filter: brightness(1.2) saturate(1.1); }
+:focus-visible { outline: 2px solid #ffff00; outline-offset: 2px; }
 
-::selection { background: #ff2bd6; color: #0a0612; }
-* { scrollbar-color: #4a2b8a #0a0612; }
+::selection { background: #ff00e5; color: #050008; }
+* { scrollbar-color: #a43dff #050008; }
 
 @media (prefers-reduced-motion: reduce) {
   body::after { display: none; }

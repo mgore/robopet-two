@@ -138,7 +138,7 @@ export const CodeGeneratorTab: React.FC<CodeGeneratorTabProps> = ({
         <button
           onClick={onGenerateCode}
           disabled={scriptLoading}
-          className="w-full sm:w-auto px-5 py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold font-mono text-xs rounded hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] border-0 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+          className="w-full sm:w-auto px-5 py-3 bg-violet-600 hover:bg-violet-500 text-white font-bold font-mono text-xs rounded hover:shadow-[0_0_15px_rgba(255,0,229,0.35)] border-0 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
         >
           {scriptLoading ? (
             <>
