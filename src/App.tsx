@@ -327,58 +327,6 @@ export default function App() {
     }
   }, [activeDrawer, contingencyList, robotType, customGoal, budget]);
 
-  // Export Local Project JSON File ($0 Cost)
-  const exportLocalProjectJSON = () => {
-    const payload = {
-      appName: "AI RoboPet",
-      robotType,
-      budget,
-      customGoal,
-      activeDrawer,
-      contingencyList,
-      exportedAt: new Date().toISOString()
-    };
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `AIRoboPet_${robotType}_build.json`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    triggerNotification("Exported project build file (.json) to local computer ($0 cost)!");
-  };
-
-  // Import Local Project JSON File ($0 Cost)
-  const importLocalProjectJSON = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      try {
-        const content = event.target?.result as string;
-        const parsed = JSON.parse(content);
-        if (parsed.activeDrawer && Array.isArray(parsed.activeDrawer)) {
-          setActiveDrawer(parsed.activeDrawer);
-          if (parsed.contingencyList && Array.isArray(parsed.contingencyList)) {
-            setContingencyList(parsed.contingencyList);
-          }
-          if (parsed.robotType) setRobotType(parsed.robotType);
-          if (parsed.budget) setBudget(parsed.budget);
-          if (parsed.customGoal) setCustomGoal(parsed.customGoal);
-          triggerNotification("Successfully imported robot project JSON build file!");
-        } else {
-          triggerNotification("Invalid AI RoboPet JSON build file structure.");
-        }
-      } catch (err) {
-        triggerNotification("Failed to parse JSON project file.");
-      }
-    };
-    reader.readAsText(file);
-    e.target.value = "";
-  };
-
   // Listen to optional Firebase Auth state (No mandatory popup block)
   useEffect(() => {
     let unsubDoc: (() => void) | null = null;
@@ -887,8 +835,6 @@ export default function App() {
           setGlossarySearch("");
           setIsGlossaryOpen(true);
         }}
-        onExportJSON={exportLocalProjectJSON}
-        onImportJSON={importLocalProjectJSON}
         onLoadPreset={loadPreset}
         userDoc={userDoc}
         onOpenAuthModal={() => { setIsAuthModalOpen(true); }}

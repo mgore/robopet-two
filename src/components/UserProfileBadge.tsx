@@ -8,7 +8,6 @@ import {
   Edit3, 
   X,
   Database,
-  Mail,
   Trash2
 } from "lucide-react";
 import { deleteAccountAndData } from "../services/accountService";
@@ -162,19 +161,6 @@ export const UserProfileBadge: React.FC<UserProfileBadgeProps> = ({
           </svg>
           <span className="hidden sm:inline">Sign in with Google</span>
           <span className="sm:hidden">Google</span>
-        </button>
-
-        {/* Standard Email Login Button */}
-        <button
-          id="header-email-signin-btn"
-          type="button"
-          onClick={onOpenAuthModal}
-          className="px-2.5 sm:px-3 py-1.5 bg-slate-800/90 hover:bg-slate-750 active:bg-slate-700 text-slate-200 border border-slate-700 rounded-lg text-xs font-mono font-medium transition flex items-center gap-1.5 cursor-pointer shadow-sm hover:text-cyan-300 shrink-0"
-          title="Sign in with Email and Password"
-        >
-          <Mail className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-          <span className="hidden sm:inline">Email Login</span>
-          <span className="sm:hidden">Email</span>
         </button>
       </div>
     );
