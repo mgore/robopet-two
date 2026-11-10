@@ -273,3 +273,198 @@ button:hover:not(:disabled) { filter: brightness(1.2) saturate(1.1); }
 @media (prefers-reduced-motion: reduce) {
   body::after { display: none; }
 }
+
+/* ------------------------------------------------------------------
+ * "Darkness Staring Back" smoothing pass (docs/darkness-staring-back.md)
+ * The void is a surface, neon is attention: cyan = you act, fuchsia/UV = it notices.
+ * Motion breathes instead of flickering; easing is soft inside the hard grid.
+ * ------------------------------------------------------------------ */
+:root {
+  --rp-ease-conscious: cubic-bezier(0.22, 1, 0.36, 1);
+  --rp-act: #00ffff;      /* the user's hand */
+  --rp-gaze: #ff00e5;     /* the pet noticing */
+  --rp-gaze-deep: #a43dff;
+  --rp-void: #050008;
+  --rp-echo-lag: 80ms;    /* reflections trail the original by this much */
+}
+
+/* P1: let the void show through the app shell so the drift layer reads as liquid, not flat black */
+#root > div.min-h-screen.bg-slate-950 { background-color: transparent; }
+
+/* P1: slow light under water, behind every panel */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(40% 35% at 30% 40%, rgba(28, 13, 56, 0.9), transparent 70%),
+    radial-gradient(35% 30% at 70% 65%, rgba(38, 18, 74, 0.55), transparent 70%),
+    radial-gradient(25% 25% at 55% 30%, rgba(164, 61, 255, 0.07), transparent 70%);
+  animation: rp-void-drift 32s var(--rp-ease-conscious) infinite alternate;
+}
+@keyframes rp-void-drift {
+  0%   { transform: translate3d(-3%, -2%, 0) scale(1); }
+  50%  { transform: translate3d(2%, 3%, 0) scale(1.06); }
+  100% { transform: translate3d(4%, -1%, 0) scale(1.02); }
+}
+
+/* P7: breathing replaces flicker. Display type and the header rule glow softly in and out */
+@keyframes rp-breathe {
+  0%, 100% { opacity: 0.85; }
+  50%      { opacity: 1; }
+}
+.font-display { animation: rp-breathe 5s ease-in-out infinite; }
+header.sticky { transition: box-shadow 600ms var(--rp-ease-conscious); }
+
+/* P3: things you press answer in cyan, then the glow drifts toward fuchsia ("it saw that") */
+button, a, [role="button"] {
+  transition:
+    filter 300ms var(--rp-ease-conscious),
+    box-shadow 600ms var(--rp-ease-conscious),
+    color 300ms var(--rp-ease-conscious);
+}
+button:active:not(:disabled) {
+  box-shadow: 0 0 22px rgba(255, 0, 229, 0.45), 0 0 8px rgba(0, 255, 255, 0.35);
+}
+
+/* P3/P5: the AI thinking state is a slow fuchsia breath, not a spinner. Opt in with .rp-thinking */
+.rp-thinking { animation: rp-gaze-breathe 4.5s ease-in-out infinite; }
+@keyframes rp-gaze-breathe {
+  0%, 100% { box-shadow: 0 0 10px rgba(164, 61, 255, 0.25); }
+  50%      { box-shadow: 0 0 26px rgba(255, 0, 229, 0.5); }
+}
+
+/* P5: AI results resolve out of a dim reflection. Opt in with .rp-surface */
+.rp-surface { animation: rp-surface-in 900ms var(--rp-ease-conscious) both; }
+@keyframes rp-surface-in {
+  from { opacity: 0; filter: blur(6px) saturate(0.4); transform: translateY(6px); }
+  to   { opacity: 1; filter: none; transform: none; }
+}
+
+/* P2: one reflected hero per screen. Opt in with .rp-reflect (Chromium/WebKit; harmless elsewhere) */
+.rp-reflect {
+  -webkit-box-reflect: below 4px linear-gradient(transparent 55%, rgba(255, 255, 255, 0.22));
+}
+
+/* ---------------- Tap-to-wake intro (src/components/IntroWake.tsx) ---------------- */
+.rp-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  cursor: pointer;
+  background:
+    radial-gradient(60% 45% at 50% 62%, rgba(28, 13, 56, 0.85), transparent 70%),
+    var(--rp-void);
+  transition: opacity 900ms var(--rp-ease-conscious), filter 900ms var(--rp-ease-conscious);
+}
+.rp-intro.is-leaving { opacity: 0; filter: blur(8px); pointer-events: none; }
+.rp-intro__stage { width: min(78vw, 360px); opacity: 0; transition: opacity 1400ms var(--rp-ease-conscious); }
+.rp-intro:not(.rp-intro--beat-0) .rp-intro__stage { opacity: 1; }
+.rp-intro__svg { width: 100%; height: auto; overflow: visible; }
+
+.rp-pool { opacity: 0.9; }
+.rp-pool__rim { stroke: rgba(164, 61, 255, 0.35); stroke-width: 0.8; }
+
+/* the cat: silhouette with a cyan rim; its reflection is brighter and more fuchsia */
+.rp-cat__body, .rp-cat__face, .rp-cat__ear, .rp-cat__paw {
+  fill: #0e0619;
+  stroke: var(--rp-act);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 3px rgba(0, 255, 255, 0.55));
+}
+.rp-cat__tail { stroke: var(--rp-act); stroke-width: 3; stroke-linecap: round; filter: drop-shadow(0 0 3px rgba(0, 255, 255, 0.5)); }
+.rp-cat__nose { fill: var(--rp-act); opacity: 0.7; }
+.rp-cat__eye { fill: rgba(0, 255, 255, 0.25); transition: fill 700ms var(--rp-ease-conscious) 500ms, ry 500ms var(--rp-ease-conscious); }
+.rp-cat__pupils { fill: var(--rp-void); transition: transform 700ms var(--rp-ease-conscious); }
+.rp-cat__head { transform-box: fill-box; transform-origin: 50% 85%; transition: transform 1100ms var(--rp-ease-conscious); }
+.rp-cat.is-recognized .rp-cat__eye { fill: var(--rp-gaze); filter: drop-shadow(0 0 4px rgba(255, 0, 229, 0.9)); }
+
+.rp-cat--reflection .rp-cat__body,
+.rp-cat--reflection .rp-cat__face,
+.rp-cat--reflection .rp-cat__ear,
+.rp-cat--reflection .rp-cat__paw { fill: #1c0d38; stroke: var(--rp-gaze); filter: none; }
+.rp-cat--reflection .rp-cat__tail { stroke: var(--rp-gaze); filter: none; }
+.rp-cat--reflection .rp-cat__nose { fill: var(--rp-gaze); }
+.rp-reflection { opacity: 0.42; }
+/* the reflection lags the cat, except its eyes, which recognize first */
+.rp-cat--reflection .rp-cat__head { transition-delay: var(--rp-echo-lag); }
+.rp-cat--reflection .rp-cat__pupils { transition-delay: var(--rp-echo-lag); }
+.rp-cat--reflection .rp-cat__eye { transition-delay: 0ms; }
+
+.rp-cat__paw.is-dabbing { animation: rp-dab 1.4s var(--rp-ease-conscious) 300ms both; transform-box: fill-box; transform-origin: center; }
+@keyframes rp-dab {
+  0%, 100% { transform: translate(0, 0); }
+  40%      { transform: translate(-2px, -10px); }
+  60%      { transform: translate(-2px, 6px); }
+}
+
+.rp-ripple { fill: none; stroke: rgba(255, 0, 229, 0.6); stroke-width: 0.8; opacity: 0; transform-box: fill-box; transform-origin: center; }
+.rp-intro--beat-2 .rp-ripple--a, .rp-intro--beat-3 .rp-ripple--a { animation: rp-ripple 2.4s var(--rp-ease-conscious) 900ms infinite; }
+.rp-intro--beat-2 .rp-ripple--b, .rp-intro--beat-3 .rp-ripple--b { animation: rp-ripple 2.4s var(--rp-ease-conscious) 1500ms infinite; }
+@keyframes rp-ripple {
+  0%   { opacity: 0.8; transform: scale(0.4); }
+  100% { opacity: 0; transform: scale(4.5); }
+}
+
+/* waking: the glow breathes with the purr */
+.rp-intro--beat-6 .rp-intro__svg { animation: rp-gaze-glow 1.2s ease-in-out infinite; }
+@keyframes rp-gaze-glow {
+  0%, 100% { filter: drop-shadow(0 0 0 rgba(255, 0, 229, 0)); }
+  50%      { filter: drop-shadow(0 0 14px rgba(255, 0, 229, 0.45)); }
+}
+
+.rp-intro__copy { position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+.rp-intro__line {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ff80f2;
+  text-shadow: 0 0 8px rgba(255, 0, 229, 0.5);
+  min-height: 1.2em;
+}
+.rp-intro__tap, .rp-intro__tap-echo {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--rp-act);
+  background: transparent;
+  border: 0;
+  padding: 0.25rem 0.5rem;
+}
+.rp-intro__tap {
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+  opacity: 0;
+  transition: opacity 1200ms var(--rp-ease-conscious);
+}
+.rp-intro__tap:focus-visible { outline: 1px solid var(--rp-act); }
+.rp-intro__tap-echo {
+  transform: scaleY(-1);
+  opacity: 0;
+  margin-top: -0.9rem;
+  filter: blur(1.2px);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.35), transparent 80%);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.35), transparent 80%);
+  pointer-events: none;
+  transition: opacity 1200ms var(--rp-ease-conscious) var(--rp-echo-lag);
+}
+.rp-intro--beat-5 .rp-intro__tap, .rp-intro--beat-6 .rp-intro__tap { opacity: 1; }
+.rp-intro--beat-5 .rp-intro__tap { animation: rp-breathe 4.5s ease-in-out 1.2s infinite; }
+.rp-intro--beat-5 .rp-intro__tap-echo, .rp-intro--beat-6 .rp-intro__tap-echo { opacity: 0.5; }
+
+/* P8: reduced motion keeps the meaning. Reflections stay, nothing ripples or drifts, the cat simply looks at you */
+@media (prefers-reduced-motion: reduce) {
+  body::before, .font-display, .rp-thinking, .rp-intro__tap, .rp-intro__svg { animation: none !important; }
+  .rp-surface { animation: none; }
+  .rp-ripple { display: none; }
+  .rp-intro *, .rp-intro { transition: none !important; }
+}

@@ -29,6 +29,7 @@ import { CreatorSupportSection } from "./components/CreatorSupportSection";
 import { WorkshopQRModal } from "./components/modals/WorkshopQRModal";
 import { NavigationHeader } from "./components/NavigationHeader";
 import { PhaseStepper } from "./components/PhaseStepper";
+import { IntroWake, shouldShowIntro } from "./components/IntroWake";
 import { generateSimulation } from "./services/simulationService";
 import {
   exportDrawerToPDF as exportDrawerToPDFService,
@@ -100,6 +101,7 @@ import { SUPPLIER_CATALOG, PRESET_PROJECTS } from "./data";
 import { HardwareComponent, RobotProfile, CompatibilityReport, LLMResult, GeneratedScript } from "./types";
 
 export default function App() {
+  const [showIntro, setShowIntro] = useState<boolean>(shouldShowIntro);
   // Profile settings
   const [robotType, setRobotType] = useState<"wheeled_rover" | "robotic_arm" | "hexapod">("wheeled_rover");
   const [customGoal, setCustomGoal] = useState("An autonomous room mapping rover that detects walls and paths.");
@@ -797,6 +799,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 font-sans antialiased selection:bg-cyan-500 selection:text-slate-950 flex flex-col w-full max-w-full overflow-x-hidden">
+      {/* TAP-TO-WAKE INTRO ("Darkness Staring Back") */}
+      {showIntro && <IntroWake onDone={() => setShowIntro(false)} />}
+
       {/* AUTHENTICATION CHOICE MODAL */}
       <AuthModal
         isOpen={isAuthModalOpen}

@@ -20,7 +20,8 @@ Design tokens extracted from the RoboPet app (`src/index.css`, `index.html`, `pu
 3. Text on `accent-solid` and other bright fills is `on-accent`.
 4. Panels are `surface-panel` with a 1px `border-default`; nesting goes `surface-base` > `surface-panel` > `surface-raised`.
 5. Each neon glows only in its own hue. Cyberpunk glow (`shadow-panel`, `shadow-glow`) is the only depth cue; do not stack it on nested elements.
-6. Respect `prefers-reduced-motion`: the cyberpunk theme's scanline flicker is static under it.
+6. Respect `prefers-reduced-motion`: scanlines, void drift, breathing and ripples stop under it; reflections and the pet's gaze stay.
+7. Neon is attention (see `docs/darkness-staring-back.md`): cyan is the user acting, fuchsia/ultraviolet is the pet noticing. Motion breathes with `cubic-bezier(0.22, 1, 0.36, 1)`; no flicker. Opt-in helpers: `.rp-reflect` (one per screen), `.rp-thinking` (AI busy), `.rp-surface` (results resolving in).
 
 ## Not covered
 
