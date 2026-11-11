@@ -1,4 +1,5 @@
 import express from "express";
+import { rateLimit } from "express-rate-limit";
 import path from "path";
 import fs from "fs";
 import dotenv from "dotenv";
@@ -27,6 +28,12 @@ dotenv.config();
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT_WINDOW_MS = 60 * 1000;
 const MAX_REQUESTS_PER_WINDOW = 60;
+const staticRateLimitMiddleware = rateLimit({
+  windowMs: RATE_LIMIT_WINDOW_MS,
+  limit: MAX_REQUESTS_PER_WINDOW,
+  standardHeaders: "draft-8",
+  legacyHeaders: false
+});
 
 function rateLimitMiddleware(req: express.Request, res: express.Response, next: express.NextFunction) {
   const ip = req.ip || req.socket.remoteAddress || "global_client";
@@ -1217,7 +1224,7 @@ Photorealism Requirements: Photorealistic real-life quality, tangible manufactur
   } else {
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
-    app.get("*", rateLimitMiddleware, (req, res) => {
+    app.get("*", staticRateLimitMiddleware, (req, res) => {
       res.sendFile(path.join(distPath, "index.html"));
     });
   }
