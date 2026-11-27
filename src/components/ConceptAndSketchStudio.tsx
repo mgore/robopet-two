@@ -39,6 +39,16 @@ import {
   downloadFileBlob
 } from "../utils/cadExportGenerators";
 
+const encodeSvgText = (value: string) => encodeURIComponent(
+  value.replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "\"": "&quot;",
+    "'": "&apos;"
+  })[character]!)
+);
+
 interface ConceptAndSketchStudioProps {
   robotType: "wheeled_rover" | "robotic_arm" | "hexapod";
   customGoal: string;
@@ -314,10 +324,10 @@ export const ConceptAndSketchStudio: React.FC<ConceptAndSketchStudioProps> = ({
       <rect x="220" y="160" width="360" height="200" rx="20" fill="${chassisFill}" stroke="${accentHex}" stroke-width="3.5"/>
       <rect x="260" y="190" width="280" height="90" rx="10" fill="%230f172a" stroke="${secondaryHex}" stroke-width="2"/>
       <text x="400" y="235" fill="${secondaryHex}" font-family="monospace" font-size="16" font-weight="bold" text-anchor="middle">
-        ${type.toUpperCase().replace("_", " ")}
+        ${encodeSvgText(type.toUpperCase().replace("_", " "))}
       </text>
       <text x="400" y="260" fill="%2394a3b8" font-family="monospace" font-size="12" text-anchor="middle">
-        MCU: ${mcu} • CATEGORY: ${category.label.toUpperCase()}
+        MCU: ${encodeSvgText(mcu)} • CATEGORY: ${category.label.toUpperCase()}
       </text>
       <!-- Wheels / Actuators -->
       <rect x="150" y="180" width="50" height="160" rx="10" fill="%23020617" stroke="%2364748b" stroke-width="2.5"/>
@@ -330,8 +340,8 @@ export const ConceptAndSketchStudio: React.FC<ConceptAndSketchStudioProps> = ({
       <!-- Metadata Badge -->
       <rect x="30" y="30" width="310" height="100" rx="10" fill="%23020617" fill-opacity="0.90" stroke="${accentHex}" stroke-width="1.5"/>
       <text x="45" y="55" fill="${secondaryHex}" font-family="monospace" font-size="12" font-weight="bold">${category.label.toUpperCase()}</text>
-      <text x="45" y="75" fill="%2394a3b8" font-family="sans-serif" font-size="10">CHASSIS: ${material}</text>
-      <text x="45" y="93" fill="${accentHex}" font-family="sans-serif" font-size="10">ACCENT: ${accent}</text>
+      <text x="45" y="75" fill="%2394a3b8" font-family="sans-serif" font-size="10">CHASSIS: ${encodeSvgText(material)}</text>
+      <text x="45" y="93" fill="${accentHex}" font-family="sans-serif" font-size="10">ACCENT: ${encodeSvgText(accent)}</text>
       <text x="45" y="112" fill="%2310b981" font-family="monospace" font-size="9">HIGH RESOLUTION CAD SPECIFICATION</text>
     </svg>`;
   };
@@ -342,17 +352,22 @@ export const ConceptAndSketchStudio: React.FC<ConceptAndSketchStudioProps> = ({
     const mcu = activeDrawer.find(d => d.category === "Microcontroller" || d.category === "SBC")?.name || "ESP32-WROOM-32E";
 
     if (type === "png") {
-      if (activeImage && activeImage.url.startsWith("data:image/png")) {
+      const pngMatch = activeImage?.url.match(/^data:image\/png;base64,([A-Za-z0-9+/]+={0,2})$/);
+      if (pngMatch) {
+        const bytes = Uint8Array.from(atob(pngMatch[1]), character => character.charCodeAt(0));
+        const url = URL.createObjectURL(new Blob([bytes], { type: "image/png" }));
         const a = document.createElement("a");
-        a.href = activeImage.url;
+        a.href = url;
         a.download = `${baseFilename}-render.png`;
         a.click();
+        URL.revokeObjectURL(url);
       } else {
-        // Render raster canvas from SVG or active data
-        const a = document.createElement("a");
-        a.href = activeImage ? activeImage.url : createProceduralSvg(currentCategory, chassisMaterial, accentColor, robotType, mcu);
-        a.download = `${baseFilename}-render.svg`;
-        a.click();
+        const svgPrefix = "data:image/svg+xml;utf8,";
+        const svgUrl = activeImage?.url.startsWith(svgPrefix)
+          ? activeImage.url
+          : createProceduralSvg(currentCategory, chassisMaterial, accentColor, robotType, mcu);
+        const svgData = decodeURIComponent(svgUrl.slice(svgPrefix.length));
+        downloadFileBlob(svgData, `${baseFilename}-render.svg`, "image/svg+xml");
       }
       triggerDownloadToast("PNG / High-Res Visual Render");
     } else if (type === "svg") {
@@ -375,13 +390,16 @@ export const ConceptAndSketchStudio: React.FC<ConceptAndSketchStudioProps> = ({
       triggerDownloadToast("STEP AP214 CAD Solid Model");
     } else if (type === "pdf") {
       const pdfHtml = generateEngineeringPdfSpecSheet(robotType, chassisMaterial, accentColor, budget, activeDrawer);
-      const printWindow = window.open("", "_blank");
+      const pdfUrl = URL.createObjectURL(new Blob([pdfHtml], { type: "text/html" }));
+      const printWindow = window.open(pdfUrl, "_blank");
       if (printWindow) {
-        printWindow.document.write(pdfHtml);
-        printWindow.document.close();
-        printWindow.focus();
-        setTimeout(() => { printWindow.print(); }, 250);
+        setTimeout(() => {
+          printWindow.focus();
+          printWindow.print();
+          URL.revokeObjectURL(pdfUrl);
+        }, 500);
       } else {
+        URL.revokeObjectURL(pdfUrl);
         downloadFileBlob(pdfHtml, `${baseFilename}-engineering-blueprint.html`, "text/html");
       }
       triggerDownloadToast("Engineering Drawing Blueprint Spec Sheet");

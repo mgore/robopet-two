@@ -13,6 +13,14 @@ export interface ChassisMaterialItem {
   description: string;
 }
 
+const escapeHtml = (value: string | number) => String(value).replace(/[&<>"']/g, character => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  "\"": "&quot;",
+  "'": "&#39;"
+})[character]!);
+
 export function getChassisMaterialBreakdown(
   chassisMaterial: string,
   accentColor: string
@@ -547,7 +555,7 @@ export function generateEngineeringPdfSpecSheet(
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AI RoboPet Engineering Drawing - ${robotType.toUpperCase()}</title>
+  <title>AI RoboPet Engineering Drawing - ${escapeHtml(robotType.toUpperCase())}</title>
   <style>
     body {
       font-family: 'Courier New', monospace;
@@ -579,12 +587,12 @@ export function generateEngineeringPdfSpecSheet(
   <div class="header-box">
     <div>
       <h1>AI RoboPet Engineering Blueprint</h1>
-      <div class="meta">ARCHETYPE: ${robotType.toUpperCase()} • DATE: ${dateStr} • REV: 2.1</div>
+      <div class="meta">ARCHETYPE: ${escapeHtml(robotType.toUpperCase())} • DATE: ${dateStr} • REV: 2.1</div>
     </div>
     <div style="text-align: right;">
-      <div>CHASSIS FINISH: <strong>${chassisMaterial}</strong></div>
-      <div>ACCENT PALETTE: <strong>${accentColor}</strong></div>
-      <div>BUDGET TARGET: <strong>$${budget} USD</strong></div>
+      <div>CHASSIS FINISH: <strong>${escapeHtml(chassisMaterial)}</strong></div>
+      <div>ACCENT PALETTE: <strong>${escapeHtml(accentColor)}</strong></div>
+      <div>BUDGET TARGET: <strong>$${escapeHtml(budget)} USD</strong></div>
     </div>
   </div>
 
@@ -602,14 +610,14 @@ export function generateEngineeringPdfSpecSheet(
         <tbody>
           ${materialInfo.items.map(i => `
             <tr>
-              <td><strong>${i.name}</strong><br><span style="color:#64748b;">${i.description}</span></td>
-              <td>${i.supplier}</td>
-              <td>$${i.estimatedCostUSD.toFixed(2)}</td>
+              <td><strong>${escapeHtml(i.name)}</strong><br><span style="color:#64748b;">${escapeHtml(i.description)}</span></td>
+              <td>${escapeHtml(i.supplier)}</td>
+              <td>$${escapeHtml(i.estimatedCostUSD.toFixed(2))}</td>
             </tr>
           `).join("")}
           <tr style="background: #f8fafc; font-weight: bold;">
             <td colspan="2">Chassis & Hardware Subtotal:</td>
-            <td>$${materialInfo.totalChassisCostUSD.toFixed(2)} USD</td>
+            <td>$${escapeHtml(materialInfo.totalChassisCostUSD.toFixed(2))} USD</td>
           </tr>
         </tbody>
       </table>
@@ -628,9 +636,9 @@ export function generateEngineeringPdfSpecSheet(
         <tbody>
           ${components.slice(0, 7).map(c => `
             <tr>
-              <td><strong>${c.name}</strong></td>
-              <td>${c.category}</td>
-              <td>${c.specs || "Verified compatible"}</td>
+              <td><strong>${escapeHtml(c.name)}</strong></td>
+              <td>${escapeHtml(c.category)}</td>
+              <td>${escapeHtml(c.specs || "Verified compatible")}</td>
             </tr>
           `).join("")}
         </tbody>
